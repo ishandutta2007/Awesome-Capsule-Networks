@@ -2,9 +2,15 @@
 
 <div align="center">
   <img src="assets/banner.svg" alt="Awesome Capsule Networks Banner" width="100%" />
+
+  <p align="center">
+    <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a> <a href="https://github.com/ishandutta2007/Awesome-Capsule-Networks/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Capsule-Networks?style=flat-square" alt="Stars"/></a> <a href="https://github.com/ishandutta2007/Awesome-Capsule-Networks/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Capsule-Networks?style=flat-square" alt="Forks"/></a> <a href="https://github.com/ishandutta2007/Awesome-Capsule-Networks/issues"><img src="https://img.shields.io/github/issues/ishandutta2007/Awesome-Capsule-Networks?style=flat-square" alt="Issues"/></a> <a href="https://github.com/ishandutta2007/Awesome-Capsule-Networks/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ishandutta2007/Awesome-Capsule-Networks?style=flat-square" alt="License"/></a>
+  </p>
 </div>
 
 ## 🌐 Capsule Networks (CapsNets): Evolution, Variants, Types, & Applications
+
+> **SEO Description:** Discover the ultimate curated repository for Capsule Networks (CapsNets) evolution, routing variants, task layout types, and production engineering mitigations. Explore structural changes in machine learning architectures, dynamic routing, EM routing, and self-attention ViT hybrids for advanced computer vision applications.
 
 Capsule Networks (CapsNets) represent a structural paradigm shift in computer vision and deep learning, designed to address the foundational limitations of traditional Convolutional Neural Networks (CNNs). Introduced by Sara Sabour, Nicholas Frosst, and Geoffrey Hinton in 2017, CapsNets replace scalar-output neurons with vector-output groups of neurons called **capsules**. While standard CNNs rely on max-pooling layers that completely discard spatial orientation and part-whole hierarchies—leading to the famous "Picasso problem" where an image with a mouth placed above the eyes is still classified as a face—CapsNet encodes both the *presence* of a feature and its explicit *spatial properties* (such as position, scale, rotation, and shear) as a multi-dimensional vector, using a unique **Dynamic Routing** algorithm to parse spatial configurations natively.
 
