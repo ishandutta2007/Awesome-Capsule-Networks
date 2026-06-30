@@ -9,8 +9,9 @@ Capsule Networks (CapsNets) represent a structural paradigm shift in computer vi
 
 The technical architecture of capsule-based networks has transitioned from rigid, slow iterative dynamic routing protocols to matrix transformations, moving toward modern fast attention approximations.
 
+```mermaid
 [Dynamic Routing CapsNet (Hinton et al., 2017)] ----> [Matrix CapsNet (EM Routing, 2018)] ----> [Modern Self-Attention & ViT Hybrids](Slow Iterative Cosine Clustering)                    (Gaussian Mixture Model / Pose Matrices)        (Eliminating Routing Latency Bottlenecks)
-
+```
 
 *   **The Dynamic Routing Baseline Era (Sabour et al., 2017)**
     *   *Concept:* The core foundational breakthrough. Replaced scalar activations with vectors where the orientation represents instantiation parameters and the length represents activation probability. It introduced **Routing-by-Agreement**, an iterative clustering algorithm where lower-level capsules predict the output of higher-level capsules, reinforcing connections based on the cosine similarity of their vectors.
