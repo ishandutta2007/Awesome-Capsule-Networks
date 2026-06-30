@@ -16,14 +16,11 @@ flowchart LR
     --> C["Modern Self-Attention & ViT Hybrids<br/>(Eliminating Routing Latency Bottlenecks)"]
 ```
 
-*   **The Dynamic Routing Baseline Era (Sabour et al., 2017)**
-    *   *Concept:* The core foundational breakthrough. Replaced scalar activations with vectors where the orientation represents instantiation parameters and the length represents activation probability. It introduced **Routing-by-Agreement**, an iterative clustering algorithm where lower-level capsules predict the output of higher-level capsules, reinforcing connections based on the cosine similarity of their vectors.
-    *   *Limitation:* Extremely computationally heavy and unscalable. The iterative routing loops had to be recalculated during every single forward pass, stalling GPU tensor processing cores.
-*   **The Expectation-Maximization & Matrix Era (EM Routing, 2018)**
-    *   *Concept:* Swapped vector capsules for matrix capsules. Each capsule was redesigned to hold an explicit **activation scalar** alongside a full **$4 \times 4$ Pose Matrix** (representing exact 3D spatial transformations). It substituted dynamic cosine tracking with an **EM (Expectation-Maximization)** routing algorithm based on a Gaussian mixture model.
-    *   *Significance:* Vastly improved mathematical resilience to viewpoint changes and spatial transformations, allowing networks to recognize 3D objects from entirely novel camera angles.
-*   **The Attention-Driven & ViT Hybrid Era (~2021–Present)**
-    *   *Concept:* Overcame the historical scaling wall. Modern variations abandon slow iterative routing loops entirely, proving mathematically that routing-by-agreement can be reframed as a specialized form of **Self-Attention**. Modern pipelines fuse capsule properties into **Vision Transformer (ViT)** layers, replacing heuristic routing with highly parallelized dot-product attention matrices.
+| Era / Milestone | First Used (Year) | Key Paper | Description |
+| :--- | :--- | :--- | :--- |
+| **The Dynamic Routing Baseline Era** | 2017 | [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829) | Replaced scalar activations with vectors where the orientation represents instantiation parameters and the length represents activation probability. Introduced **Routing-by-Agreement** (iterative clustering based on cosine similarity of vectors). |
+| **The Expectation-Maximization & Matrix Era** | 2018 | [Matrix Capsules with EM Routing](https://openreview.net/forum?id=HJ7tN1AZg) | Swapped vector capsules for matrix capsules holding a pose matrix. Substituted dynamic cosine tracking with an **EM (Expectation-Maximization)** routing algorithm based on a Gaussian mixture model. |
+| **The Attention-Driven & ViT Hybrid Era** | 2021 | [Efficient-CapsNet: Capsule Networks with Self-Attention Routing](https://arxiv.org/abs/2101.12491) | Fuses capsule properties into Transformer architectures. Reframes routing-by-agreement as a specialized form of **Self-Attention** to eliminate routing latency. |
 
 ---
 
@@ -31,12 +28,11 @@ flowchart LR
 
 The Capsule family tree features specialized mathematical routing modifications designed to optimize processing speed and reduce computational complexity.
 
-*   **Dynamic Routing (Cosine Agreement)**
-    *   *Mechanism:* Updates coupling coefficients iteratively via a log-prior scalar. It measures the dot product between the lower layer's prediction vector and the upper layer's output vector, applying a non-linear `squash` activation function to bound vector lengths between 0 and 1.
-*   **EM Routing (Expectation-Maximization)**
-    *   *Mechanism:* Treats the routing procedure as a statistical clustering problem. It fits a Gaussian distribution to the predictions of lower-level capsules, evaluating capsule agreements based on clustering log-likelihoods.
-*   **Inverted Dot-Product Attention Routing (Fast CapsNet)**
-    *   *Mechanism:* Eliminates multi-step runtime loops. It computes attention maps straight across capsule channels in a single forward pass, mapping spatial transformation variables without stalling active execution graphs.
+| Routing Variant | First Used (Year) | Key Paper | Mechanism |
+| :--- | :--- | :--- | :--- |
+| **Dynamic Routing (Cosine Agreement)** | 2017 | [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829) | Updates coupling coefficients iteratively via a log-prior scalar measuring the dot product between lower and upper layer vectors, applying a non-linear `squash` activation function. |
+| **EM Routing (Expectation-Maximization)** | 2018 | [Matrix Capsules with EM Routing](https://openreview.net/forum?id=HJ7tN1AZg) | Treats routing as a statistical clustering problem. Fits a Gaussian distribution to predictions of lower-level capsules, evaluating agreements based on clustering log-likelihoods. |
+| **Inverted Dot-Product Attention Routing (Fast CapsNet)** | 2020 | [Capsules with Inverted Dot-Product Attention Routing](https://arxiv.org/abs/2002.04704) | Eliminates multi-step runtime loops by computing attention maps across capsule channels in a single forward pass, mapping spatial transformation variables without stalling active execution graphs. |
 
 ---
 
@@ -44,12 +40,11 @@ The Capsule family tree features specialized mathematical routing modifications 
 
 Depending on the operational constraints of the computer vision pipeline, capsule layers are configured across distinct geometric and dimension spaces.
 
-*   **2D Spatial Part-Whole CapsNets**
-    *   *Profile:* Applied to standard flat image canvas tracking. The capsules parameterize localized visual primitives (such as lines, corners, and object parts), tracking how their relative positions combine to form complex structures (e.g., matching wheels and windows to a car chassis bounding box).
-*   **3D Volumetric / Point Cloud CapsNets**
-    *   *Profile:* Ingests lidar coordinate clouds or volumetric medical data arrays natively. The pose matrices inside the capsules track absolute 3D spatial transforms, depth variables, and volumetric rotation vectors directly.
-*   **Deep Convolutional Capsule Stacks**
-    *   *Profile:* Stacks standard convolutional layers early in the network graph to execute rough, low-level feature extraction, introducing capsule layers strictly within the deeper terminal blocks to handle high-level semantic layout reasoning.
+| Layout / Network Type | First Used (Year) | Key Paper | Profile |
+| :--- | :--- | :--- | :--- |
+| **2D Spatial Part-Whole CapsNets** | 2017 | [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829) | Applied to standard flat image canvas tracking. The capsules parameterize localized visual primitives (such as lines, corners, and object parts) and track their relative positions. |
+| **3D Volumetric / Point Cloud CapsNets** | 2018 | [3D Capsule Networks for Object Classification from 3D Model Data](https://arxiv.org/abs/1809.07172) | Ingests lidar coordinate clouds or volumetric medical data arrays natively. The pose matrices inside the capsules track absolute 3D spatial transforms, depth variables, and volumetric rotation vectors directly. |
+| **Deep Convolutional Capsule Stacks** | 2019 | [Deep Convolutional Capsule Network for Spectral-Spatial Classification](https://doi.org/10.1109/LGRS.2019.2918949) | Stacks standard convolutional layers early in the network graph to execute rough, low-level feature extraction, introducing capsule layers strictly within the deeper terminal blocks. |
 
 ---
 
@@ -57,21 +52,18 @@ Depending on the operational constraints of the computer vision pipeline, capsul
 
 While Capsule Networks offer exceptional mathematical properties on paper, deploying them across industrial enterprise scales introduces severe computational bottlenecks.
 
-*   **The Hardware Incompatibility & Latency Wall**
-    *   *The Problem:* Modern AI infrastructure (GPUs, TPUs) is optimized exclusively for highly uniform, parallelized dense matrix multiplication. Iterative routing loops require sequential, dynamic memory allocation changes at runtime, which prevents the hardware from saturating tensor cores and introduces immense processing latency.
-    *   *Mitigation:* transition away from explicit iterative loops toward **Fused Attention CapsNet Kernels** or compiling the routing math into highly optimized custom **Triton scripts** that handle the vector updates within GPU SRAM registers.
-*   **The Parameter Explosion Problem**
-    *   *The Problem:* Because every capsule layer connection requires a full transformation weight matrix per capsule pair, scaling a CapsNet to handle high-resolution datasets (like ImageNet or large multi-megapixel documents) causes the model's parameter size to balloon uncontrollably.
-    *   *Mitigation:* Implementing **Shared Transformation Matrices** across spatial coordinates, or utilizing localized **Group-Wise Quantization** to compress the routing parameter tensors on disk.
+| Challenge | First Used (Year) | Key Paper / Mitigation Source | Details & Mitigation |
+| :--- | :--- | :--- | :--- |
+| **The Hardware Incompatibility & Latency Wall** | 2020 | [Capsules with Inverted Dot-Product Attention Routing](https://arxiv.org/abs/2002.04704) / [Triton](https://dl.acm.org/doi/10.1145/3358807.3358808) | Iterative routing loops require sequential, dynamic memory allocation changes at runtime, preventing GPU/TPU tensor core saturation. Mitigation: transition to **Fused Attention CapsNet Kernels** or custom **Triton scripts** that handle vector updates within GPU SRAM registers. |
+| **The Parameter Explosion Problem** | 2018 | [Capsules for Object Segmentation](https://arxiv.org/abs/1804.04241) | Connecting every capsule pair requires a full transformation weight matrix, ballooning model parameter sizes for high-resolution datasets. Mitigation: Implementing **Shared Transformation Matrices** across coordinates, or localized **Group-Wise Quantization**. |
 
 ---
 
 ## 5. Frontier Real-World Applications
 
-*   **High-Precision Medical Image Diagnostic Segmentation**
-    *   *Application:* Processes detailed anatomical scans (such as MRIs, CT scans, and ultrasound fields). Because medical structures possess strict, immutable physical geometries (e.g., a specific blood vessel always sits relative to a specific bone coordinate), CapsNets excel at segmenting tumors and tracing rare pathologies using highly sparse training datasets where standard CNNs overfit.
-*   **Aerospace & Satellite Volumetric Spatial Grounding**
-    *   *Application:* Analyzes remote sensing data, satellite imagery, and radar tracking outputs. Capsule pose matrices decode perspective distortions, changing sunlight shadows, and high-altitude camera tilts natively, tracking structural military or environmental assets accurately across variable seasonal conditions.
-*   **Autonomous Robotic Manipulation & Pose Estimation**
-    *   *Application:* Drives real-time grasping and pick-and-place routing loops for industrial factory limbs. Ingesting visual arrays through capsule architectures permits the robot to instantly decode the absolute 3D orientation, tilt, and depth position of an un-indexed component, preventing collision errors during fast mechanical execution steps.
+| Application Area | First Used (Year) | Key Paper | Description |
+| :--- | :--- | :--- | :--- |
+| **High-Precision Medical Image Diagnostic Segmentation** | 2018 | [Capsules for Object Segmentation](https://arxiv.org/abs/1804.04241) | Processes detailed anatomical scans (MRIs, CT scans, ultrasound fields). Excels at segmenting tumors and tracing rare pathologies using highly sparse training datasets where standard CNNs overfit. |
+| **Aerospace & Satellite Volumetric Spatial Grounding** | 2018 | [Remote Sensing Image Classification Based on Capsule Network](https://doi.org/10.1109/LGRS.2018.2818162) | Analyzes remote sensing data, satellite imagery, and radar tracking outputs. Capsule pose matrices decode perspective distortions, changing sunlight shadows, and high-altitude tilts natively. |
+| **Autonomous Robotic Manipulation & Pose Estimation** | 2019 | [GraspCaps: A Capsule Network Approach for Familiar 6DoF Object Grasping](https://arxiv.org/abs/1910.02103) | Drives real-time grasping and pick-and-place routing loops. Instantly decodes the absolute 3D orientation, tilt, and depth position of an un-indexed component to prevent collision errors. |
 
