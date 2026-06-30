@@ -78,3 +78,16 @@ While Capsule Networks offer exceptional mathematical properties on paper, deplo
 | [**Aerospace & Satellite Volumetric Spatial Grounding**](docs/aerospace_satellite_grounding.md) | 2018 | [Remote Sensing Image Classification Based on Capsule Network](https://doi.org/10.1109/LGRS.2018.2818162) | Analyzes remote sensing data, satellite imagery, and radar tracking outputs. Capsule pose matrices decode perspective distortions, changing sunlight shadows, and high-altitude tilts natively. |
 | [**Autonomous Robotic Manipulation & Pose Estimation**](docs/robotic_manipulation_pose.md) | 2019 | [GraspCaps: A Capsule Network Approach for Familiar 6DoF Object Grasping](https://arxiv.org/abs/1910.02103) | Drives real-time grasping and pick-and-place routing loops. Instantly decodes the absolute 3D orientation, tilt, and depth position of an un-indexed component to prevent collision errors. |
 
+---
+
+##  Star History
+<div align="center">
+<a href="https://www.star-history.com/?repos=ishandutta2007%2FAwesome-Capsule-Networks&type=date&legend=bottom-right">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Capsule-Networks&type=date&theme=dark&legend=bottom-right" />
+<source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Capsule-Networks&type=date&legend=bottom-right" />
+<img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Capsule-Networks&type=date&legend=bottom-right" />
+</picture>
+</a>
+</div>
+
