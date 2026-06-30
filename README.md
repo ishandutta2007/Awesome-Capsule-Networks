@@ -1,11 +1,16 @@
-# Awesome-Capsule-Networks
-## Capsule Networks (CapsNets): Evolution, Variants, Types, & Applications
+# 🚀 Awesome Capsule Networks 🧠
+
+<div align="center">
+  <img src="assets/banner.svg" alt="Awesome Capsule Networks Banner" width="100%" />
+</div>
+
+## 🌐 Capsule Networks (CapsNets): Evolution, Variants, Types, & Applications
 
 Capsule Networks (CapsNets) represent a structural paradigm shift in computer vision and deep learning, designed to address the foundational limitations of traditional Convolutional Neural Networks (CNNs). Introduced by Sara Sabour, Nicholas Frosst, and Geoffrey Hinton in 2017, CapsNets replace scalar-output neurons with vector-output groups of neurons called **capsules**. While standard CNNs rely on max-pooling layers that completely discard spatial orientation and part-whole hierarchies—leading to the famous "Picasso problem" where an image with a mouth placed above the eyes is still classified as a face—CapsNet encodes both the *presence* of a feature and its explicit *spatial properties* (such as position, scale, rotation, and shear) as a multi-dimensional vector, using a unique **Dynamic Routing** algorithm to parse spatial configurations natively.
 
 ---
 
-## 1. The Chronological Evolution
+## ⏳ 1. The Chronological Evolution
 
 The technical architecture of capsule-based networks has transitioned from rigid, slow iterative dynamic routing protocols to matrix transformations, moving toward modern fast attention approximations.
 
@@ -24,7 +29,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Routing Variants
+## ⚙️ 2. Core Functional & Routing Variants
 
 The Capsule family tree features specialized mathematical routing modifications designed to optimize processing speed and reduce computational complexity.
 
@@ -36,7 +41,7 @@ The Capsule family tree features specialized mathematical routing modifications 
 
 ---
 
-## 3. Structural Task & Layout Types
+## 📐 3. Structural Task & Layout Types
 
 Depending on the operational constraints of the computer vision pipeline, capsule layers are configured across distinct geometric and dimension spaces.
 
@@ -48,7 +53,7 @@ Depending on the operational constraints of the computer vision pipeline, capsul
 
 ---
 
-## 4. Production Engineering Challenges & Mitigations
+## 🛠️ 4. Production Engineering Challenges & Mitigations
 
 While Capsule Networks offer exceptional mathematical properties on paper, deploying them across industrial enterprise scales introduces severe computational bottlenecks.
 
@@ -59,7 +64,7 @@ While Capsule Networks offer exceptional mathematical properties on paper, deplo
 
 ---
 
-## 5. Frontier Real-World Applications
+## 🌍 5. Frontier Real-World Applications
 
 | Application Area | First Used (Year) | Key Paper | Description |
 | :--- | :--- | :--- | :--- |
