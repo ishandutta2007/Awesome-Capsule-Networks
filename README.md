@@ -10,7 +10,10 @@ Capsule Networks (CapsNets) represent a structural paradigm shift in computer vi
 The technical architecture of capsule-based networks has transitioned from rigid, slow iterative dynamic routing protocols to matrix transformations, moving toward modern fast attention approximations.
 
 ```mermaid
-[Dynamic Routing CapsNet (Hinton et al., 2017)] ----> [Matrix CapsNet (EM Routing, 2018)] ----> [Modern Self-Attention & ViT Hybrids](Slow Iterative Cosine Clustering)                    (Gaussian Mixture Model / Pose Matrices)        (Eliminating Routing Latency Bottlenecks)
+flowchart LR
+    A["Dynamic Routing CapsNet (Hinton et al., 2017)<br/>(Slow Iterative Cosine Clustering)"]
+    --> B["Matrix CapsNet (EM Routing, 2018)<br/>(Gaussian Mixture Model / Pose Matrices)"]
+    --> C["Modern Self-Attention & ViT Hybrids<br/>(Eliminating Routing Latency Bottlenecks)"]
 ```
 
 *   **The Dynamic Routing Baseline Era (Sabour et al., 2017)**
